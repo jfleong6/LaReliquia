@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro Vacacional La Reliquia</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pedidos.css') }}">
+    <script src="{{ url_for('static', filename='js/pedidos.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/cargar_pedidos.js') }}" defer></script>
+
+</head>
+<body class="pedidos-container">
+    <div class="tabs">
+        <div class="tab active-tab" onclick="openTab(event, 'en_espera')">En espera</div>
+        <div class="tab " onclick="openTab(event, 'en_mesa')">En mesa</div>
+        <div class="tab" onclick="openTab(event, 'por_finalizar')">Por finalizar</div>
+    </div>
+
+    <div id="en_espera" class="tab-content active">
+        
+    </div>
+
+    <div id="en_mesa" class="tab-content">
+        
+    </div>
+
+    <div id="por_finalizar" class="tab-content">
+        
+    </div>
+
+</body>
+</html>

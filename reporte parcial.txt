@@ -1,0 +1,15 @@
+Almuerzo
+*Churrasco: 4
+*Trucha: 1
+*Chuleta: 4
+SubTotal: 9
+-----------------------
+Cena
+*Hamburguesa: 2
+SubTotal: 2
+-----------------------
+Desayuno
+*Fritos: 2
+SubTotal: 2
+-----------------------
+Total: 13

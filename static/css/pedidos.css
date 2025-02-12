@@ -1,0 +1,188 @@
+/* Reset de estilos para evitar márgenes y padding predeterminados */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Contenedor principal de los pedidos */
+.pedidos-container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  min-height: 100vh;
+  padding-top: 50px; /* Espacio para las pestañas */
+}
+
+/* Estilos de las pestañas */
+.tabs {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  background: #2145f3;
+  color: white;
+  padding: 10px;
+  z-index: 1000;
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  background: #748bf7;
+  border-right: 2px solid white;
+  cursor: pointer;
+}
+
+.tab:hover, .active-tab {
+  background: #2145f3;
+  font-weight: bold;
+}
+
+/* Contenedor de cada sección (tab) */
+.tab-content {
+  width: 100vw;
+  min-height: calc(100vh - 100px);
+  display: none;
+  padding: 20px;
+  background: white;
+  overflow-y: auto;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.active {
+  display: flex;
+}
+
+/* Estilos de cada pedido */
+.pedido {
+  background: #ffffff;
+  width: min(150px, 100%);
+  border: 2px;
+  border-radius: 20px;
+  padding: 0px;
+  text-align: center;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.titulo_y_boton{
+  width: 100px;
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.titulo_comanda {
+  width: 80%;
+  background: #2145f3;
+  color: white;
+  padding: 10px;
+  border-radius: 20px 20px 20px 0;
+}
+.boton_mas{
+  text-decoration: none;
+  width: 20%;
+  align-items: center;
+  text-align: top;
+  justify-content: right;
+  border-radius: 20px;
+  border: 2px;
+  font-size: 30px;
+  background: rgba(255, 255, 255, 0);
+}
+/* Categorías dentro de cada pedido */
+.categoria {
+  color: #ffffff;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #7D71D8;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+
+  min-height: 30px;
+}
+
+.categoria p {
+  flex: 1;
+  text-align: left;
+  font-weight: bold;
+}
+
+
+.categoria p:first-child {
+  width: 30px; /* Define un ancho fijo */
+  text-align: center;
+  flex: none; /* Evita que se expanda */
+}
+
+.categoria p:nth-child(2) {
+  flex: 1; /* La categoría ocupa el espacio disponible */
+  text-align: center;
+}
+
+.categoria p:last-child {
+  text-align: center;
+  min-width: 100px; /* Asegura que el precio no se colapse */
+}
+
+
+/* Estilos de la descripción dentro de cada pedido */
+.descripcion p {
+  margin-left: 25px;
+  text-align: left;
+  margin-bottom: 5px;
+}
+/* Estilos del menú flotante */
+.menu {
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  display: none;
+  list-style: none;
+  padding: 5px 0;
+  width: 150px;
+}
+
+.menu li {
+  padding: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.menu li:hover {
+  background: #f0f0f0;
+}
+/* Estilos del menú flotante */
+.menu {
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  display: none;
+  list-style: none;
+  padding: 5px 0;
+  width: 150px;
+  z-index: 1000;
+}
+
+.menu li {
+  padding: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.menu li:hover {
+  background: #f0f0f0;
+}
