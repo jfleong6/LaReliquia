@@ -51,7 +51,7 @@ class Item:
 
         # Entrada de cantidad
         self.var_cant = tk.StringVar()
-        self.var_cant.set(self.cantidad)
+        self.var_cant.set("1")
         self.cant_label= ctk.CTkEntry(
             self.frame, textvariable = self.var_cant, font = fuente_items,justify ="center",
             corner_radius=20, width=90

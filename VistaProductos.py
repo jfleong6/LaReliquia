@@ -61,7 +61,7 @@ class VistaProductos:
         self.boton_agregar.pack(pady=(1, 1), padx=5)
 
         # Aplicar eventos
-        self.aplicar_eventos()
+
 
     def crear_etiqueta(self, texto, tamaño, estilo=None, color="#000000", padding=(0, 0), padx=0):
         """Función auxiliar para crear etiquetas de texto."""
@@ -74,13 +74,6 @@ class VistaProductos:
         )
         etiqueta.pack(pady=padding, padx=padx)
         return etiqueta
-
-    def aplicar_eventos(self):
-        """Aplica eventos de interacción a los elementos"""
-        for widget in [self.frame_producto, self.boton_agregar]:
-            widget.bind("<Enter>", self.enter)
-            widget.bind("<Leave>", self.leave)
-            widget.bind("<Button-1>", self.click)
 
     def click(self, event=None):
         """Agregar item al ticket si hay stock"""

@@ -125,6 +125,7 @@ class TicketDeVenta:
         NuevoCliente(self.parent_frame)
 
     def agregar_item(self, id_producto, nombre, precio,stock,icono):
+        
         if id_producto in self.items:
             # Si ya existe el producto, incrementamos la cantidad
             self.items[id_producto].sumar()
@@ -180,8 +181,10 @@ class TicketDeVenta:
         
         # Obtener el ID de la venta recién creada
         venta_nueva = self.db.seleccionar("ventas", "*", "fecha = ? AND cliente_id = ?", (fecha_actual, cliente_id,))
-        print(venta_nueva)
-        venta_id = venta_nueva[-1][0]  # Tomamos el último en caso de que haya múltiples en el mismo segundo
+        if venta_nueva == []:
+            venta_id = 0
+        else:
+            venta_id = venta_nueva[-1][0]  # Tomamos el último en caso de que haya múltiples en el mismo segundo
 
         # Registrar los detalles de la venta
         total_compra = 0
@@ -263,7 +266,6 @@ class TicketDeVenta:
         
         return total_precio
 
-
     def registrar_pagos(self, venta_id):
         """
         Registra los pagos asociados a una venta. Si no hay método seleccionado,
@@ -311,8 +313,9 @@ class TicketDeVenta:
                         print(f"Error al procesar el pago con {metodo}")
         
         # Verificar si los pagos cubren el total
-        if abs(total_pagado - self.total) > 0.01:  # Usar una pequeña tolerancia para decimales
+        if abs(total_pagado - self.total) > 0:  # Usar una pequeña tolerancia para decimales
             raise ValueError(f"El total pagado (${total_pagado:,.2f}) no coincide con el total de la venta (${self.total:,.2f})")
+        efectivo,Transferencia,cxc = [0,0,0]
         if "Efectivo" in pagos_realizados:
             efectivo =  pagos_realizados["Efectivo"]
         if "Transferencia" in pagos_realizados:
@@ -322,7 +325,7 @@ class TicketDeVenta:
 
         self.db.insertar("entregas_diarias", {
             "fecha": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            "efectivo": efectivo,
+            "Efectivo": efectivo,
             "transferencias": Transferencia,
             "cxc": cxc,
             "total": self.total,
