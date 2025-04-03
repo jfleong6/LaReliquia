@@ -687,7 +687,7 @@ class Interfaz(CargarImagenes):
             print(f"❌ Error: No se encontró el pedido con ID {id}")
     def enviar_categorias_platos_web(self):
         self.Menu_web = {}
-        query = "SELECT *FROM Categorias"
+        query = "SELECT * FROM Categorias ORDER BY ordenar ASC"
         self.listaCategorias = self.run_query(query)
         for categoria in self.listaCategorias:
             query = f"SELECT *FROM ArticulosCategorias WHERE Categoria == '{categoria[0]}'"
@@ -699,10 +699,10 @@ class Interfaz(CargarImagenes):
                                                                 "precio":plato[4]}
 
             self.Menu_web[categoria[1]] = articulos
-        
-        for categoria in self.Menu_web:
-            print(f"{categoria}:\tCodigo: {self.Menu_web[categoria]["Codigo"]}")
         """
+        for categoria in self.Menu_web:
+            print(f"{categoria.center(20," ")}:\tCodigo: {self.Menu_web[categoria]["Codigo"]}")
+        
             for plato in self.Menu_web[categoria]["Platos"]:
                 print(f"\t{plato}\tCodigo: {self.Menu_web[categoria]["Platos"][plato]["codigo"]}")
                 print(f"\t\t\tPrecio: {self.Menu_web[categoria]["Platos"][plato]["precio"]}")
@@ -2179,6 +2179,7 @@ class Nuevo_Pedido(Interfaz):
         else:
             comanda = self.OrdenEditar['Comanda']
         parametros = self.organizarListaParaGuardar()
+        print(parametros)
         if self.texto =="Normal":
             self.run_query("insert into Pedido values (Null,?,?,?,?,?,?,?,?,?,?)",parametros)
         parametre = []
@@ -2210,6 +2211,7 @@ class Nuevo_Pedido(Interfaz):
                      0,
                      self.Menu[categoria]["Total"]["Total"].get())
             parametre.append(lista)
+        print(parametre)
         self.run_query_many("insert into RegistroPedidos values(?,?,?,?,?,?,?,?,?)",parametre)
         if self.texto == "Normal":
             if messagebox.askyesno(message="!Pedido guardado!\n¿Desea realizar otro pedido?",title="Pedido Guardado"):

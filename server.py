@@ -16,8 +16,13 @@ class PedidoAPI:
     def get_pedidos(self):
         """Obtiene los pedidos desde la aplicación principal"""
         return self.app_principal.enviar_pedidos_web()
+    
     def get_menu_web(self):
-        """Obtiene los pedidos desde la aplicación principal"""
+        """Obtiene los pedidos desde la aplicación principal
+        menu_web =self.app_principal.enviar_categorias_platos_web()
+        for categoria in menu_web:
+            print(f"{categoria.center(20," ")}:\tCodigo: {menu_web[categoria]["Codigo"]}")
+        """
         return self.app_principal.enviar_categorias_platos_web()
 
     def setup_routes(self):
@@ -36,6 +41,7 @@ class PedidoAPI:
         
         @self.app.route('/api/menu_web', methods=['GET'])
         def menu_web():
+            
             return jsonify(self.get_menu_web())
 
         @self.app.route('/api/actualizar_pedidos', methods=['POST'])
@@ -60,9 +66,7 @@ class PedidoAPI:
             print(f"🖨️ Imprimiendo pedido #{pedido_id} para {tipo_impresion}...")
             self.app_principal.imprimir_desde_web(pedido_id,tipo_impresion)
 
-            return jsonify({"mensaje": f"Pedido {pedido_id} enviado a impresión para {tipo_impresion}"}), 200
-
-            
+            return jsonify({"mensaje": f"Pedido {pedido_id} enviado a impresión para {tipo_impresion}"}), 200         
 
     def run(self):
         """Ejecuta Flask con soporte para WebSockets en un hilo separado."""
